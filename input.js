@@ -1,6 +1,7 @@
+let connection;
 
-
-const setupInput = function () {
+const setupInput = function (conn) {
+  connection = conn;
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
@@ -14,6 +15,20 @@ const handleUserInput = function (key) {
     // ctrl + c
     process.exit();
   }
+
+  // Example of sending a move command to the server
+  if (key === "w") {
+    connection.write("Move: up");
+  }
+  if (key === "a") {
+    connection.write("Move: left");
+  }
+  if (key === "s") {
+    connection.write("Move: down");
+  }
+  if (key === "d") {
+    connection.write("Move: right");
+  }
 };
 
-module.exports = {setupInput};
+module.exports = { setupInput };

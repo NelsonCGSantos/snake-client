@@ -1,31 +1,10 @@
 const { connect } = require("./client");
- 
 const { setupInput } = require("./input");
 
-const net = require("net");
-
 console.log("Connecting ...");
-connect();
+const conn = connect();
 
-
-const setupInput = function () {
-  const stdin = process.stdin;
-  stdin.setRawMode(true);
-  stdin.setEncoding("utf8");
-  stdin.resume();
-  stdin.on("data", handleUserInput);
-  return stdin;
-};
-  
-const handleUserInput = function (key) {
-  if (key === "\u0003") {
-    // ctrl + c
-    process.exit();
-  }
-};
-
-setupInput();
-  
+setupInput(conn);
 
 // conn.write("Move: up");
 
@@ -33,5 +12,4 @@ setupInput();
 // clearInterval(intervalId);
 
 
-console.log("Connecting ...");
-connect();
+

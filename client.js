@@ -1,8 +1,9 @@
 const net = require("net");
+
 const connect = function () {
   const conn = net.createConnection({
     host: "localhost",
-    port: "50541",
+    port: 50541,
   });
 
   // interpret incoming data as text
@@ -12,11 +13,12 @@ const connect = function () {
     console.log("Server says: ", data);
   });
 
-  conn.on('connect', () => {
-    console.log('Successfully connected to game server');
+  conn.on("connect", () => {
+    console.log("Successfully connected to game server");
     // conn.write("Move: up");
   });
 
   return conn;
 };
+
 module.exports = { connect };
